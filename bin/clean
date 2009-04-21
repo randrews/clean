@@ -1,0 +1,22 @@
+#!/usr/local/bin/ruby
+
+require 'rubygems'
+require 'clean'
+
+include Options
+include Config
+include Destinations
+include CommandUtil
+
+$OPTS=get_options(ARGV.dup)
+
+##################################################
+### Make and run commands ########################
+##################################################
+
+$OPTS[:dirs].each do |dir|
+  cmds=dir_commands(dir)
+  cmds+=file_commands(dir)
+
+  cmds.sort.map &:run
+end

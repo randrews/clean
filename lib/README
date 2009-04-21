@@ -1,0 +1,13 @@
+To build the gem:
+
+gem build clean.gemspec
+
+To install:
+
+sudo gem install clean-1.0.0.gem
+
+Config file defaults to ~/.clean.yml
+
+To clean a directory:
+
+clean <dirname>
