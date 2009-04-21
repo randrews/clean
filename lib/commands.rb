@@ -57,8 +57,27 @@ class MoveCommand < Command
     FileUtils.mv filename, directory
   end
 
-  def collision?
-    File.exists?(File.join(directory,File.basename(filename)))
+  def collision? fname=filename
+    File.exists?(File.join(directory,File.basename(fname)))
+  end
+
+  def unique_name
+    fname=filename
+
+    # make sure there's a real collision
+    return fname unless collision? fname
+
+    # ext is like ".jpg"
+    ext=File.extname(fname)
+
+    # Base is the filename - dir and extension, so /foo/bar.txt -> bar
+    base=File.basename(fname,ext)
+
+    # loop until we find an n that'll work. Start with bar-1.txt
+    n=1
+    n+=1 while collision?("#{base}-#{n}#{ext}")
+
+    "#{base}-#{n}#{ext}"
   end
 
   def real_run
@@ -67,7 +86,7 @@ class MoveCommand < Command
       mv
     when 'rename'
       if collision?
-        puts "I should be renaming #{filename}"
+        FileUtils.mv filename, File.join(directory,unique_name)
       else
         mv
       end
