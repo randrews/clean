@@ -42,8 +42,27 @@ class MoveCommand < Command
     "mv -i #{filename} #{directory}"
   end
 
-  def real_run
+  def mv
     FileUtils.mv filename, directory
+  end
+
+  def collision?
+    File.exists?(File.join(directory,File.basename(filename)))
+  end
+
+  def real_run
+    case $OPTS[:on_collision]
+    when 'overwrite'
+      mv
+    when 'rename'
+      if collision?
+        puts "I should be renaming #{filename}"
+      else
+        mv
+      end
+    when 'ignore'
+      puts "Ignoring #{filename}, would normally move to #{directory}"
+    end
   end
 end
 
