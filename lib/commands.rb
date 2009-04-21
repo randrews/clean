@@ -39,7 +39,7 @@ class MoveCommand < Command
   def directory ; transform @directory ; end
 
   def dry_run
-    "mv #{filename} #{directory}"
+    "mv -i #{filename} #{directory}"
   end
 
   def real_run
