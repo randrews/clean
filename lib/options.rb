@@ -10,7 +10,7 @@ module Options
 Cleaner is a program for automatically sorting files based on their extensions.
 
 Usage:
-       cleaner [options] <dirs>+
+       clean [options] <dirs>+
 
 where [options] are:
 EOS
