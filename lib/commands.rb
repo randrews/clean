@@ -12,7 +12,11 @@ class Command
   end
 
   def run
-    puts(dry_run) unless $OPTS[:silent]
+    unless $OPTS[:silent]
+      dr=dry_run
+      puts(dry_run) if dry_run
+    end
+
     real_run unless $OPTS[:dry_run]
   end
 
