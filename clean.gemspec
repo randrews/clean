@@ -2,7 +2,7 @@ require 'rubygems'
 
 SPEC=Gem::Specification.new do |s|
   s.name='clean'
-  s.version='1.0.0'
+  s.version='1.1.0'
   s.date='2009-03-08'
   s.author='Andrews, Ross'
   s.email='randrews@geekfu.org'
