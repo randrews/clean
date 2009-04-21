@@ -47,11 +47,28 @@ class MoveCommand < Command
     when 'overwrite'
       "mv #{filename} #{directory}"
     when 'rename'
-      "rename #{filename}"
+      "mv #{filename} #{File.join(directory,unique_name)}"
     else # 'ignore' also
       # emit nothing
     end
   end
+
+  def real_run
+    case $OPTS[:on_collision]
+    when 'overwrite'
+      mv
+    when 'rename'
+      if collision?
+        FileUtils.mv filename, File.join(directory,unique_name)
+      else
+        mv
+      end
+    else # captures the 'ignore' option too
+      # do nothing
+    end
+  end
+
+  private
 
   def mv
     FileUtils.mv filename, directory
@@ -78,21 +95,6 @@ class MoveCommand < Command
     n+=1 while collision?("#{base}-#{n}#{ext}")
 
     "#{base}-#{n}#{ext}"
-  end
-
-  def real_run
-    case $OPTS[:on_collision]
-    when 'overwrite'
-      mv
-    when 'rename'
-      if collision?
-        FileUtils.mv filename, File.join(directory,unique_name)
-      else
-        mv
-      end
-    else # captures the 'ignore' option too
-      # do nothing
-    end
   end
 end
 
