@@ -20,6 +20,8 @@ EOS
           :default=>'~/.clean.yml', :type=>String)
       opt(:silent, "Don't print commands",
           :default=>false)
+      opt(:on_collision, "If the destination file already exists, rename, overwrite, or ignore?",
+          :default=>'rename')
     end
 
     Trollop::die "Must specify at least one directory to clean" if args.empty?
