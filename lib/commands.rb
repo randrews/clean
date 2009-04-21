@@ -39,7 +39,14 @@ class MoveCommand < Command
   def directory ; transform @directory ; end
 
   def dry_run
-    "mv -i #{filename} #{directory}"
+    case $OPTS[:on_collision]
+    when 'overwrite'
+      "mv #{filename} #{directory}"
+    when 'rename'
+      "rename #{filename}"
+    else # 'ignore' also
+      # emit nothing
+    end
   end
 
   def mv
@@ -60,8 +67,8 @@ class MoveCommand < Command
       else
         mv
       end
-    when 'ignore'
-      puts "Ignoring #{filename}, would normally move to #{directory}"
+    else # captures the 'ignore' option too
+      # do nothing
     end
   end
 end
