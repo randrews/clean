@@ -10,7 +10,8 @@ module Config
     else
       ex=File.expand_path(File.join(File.dirname(__FILE__),
                                     '..','res','clean.yml'))
-      Trollop::die "Config file #{file} not found; example in #{ex}"
+      puts "Warning: config file #{file} not found; using default #{ex}"
+      @config||=YAML.load(File.open(file))
     end
   end
 
