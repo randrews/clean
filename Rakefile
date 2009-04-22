@@ -8,6 +8,9 @@ task :clean do
   files.each do |tmp|
     FileUtils.rm tmp
   end
+
+  puts "Removing generated files"
+  `rm -f clean-*.gem clean-*.tar.gz`
 end
 
 task :package=>:build do
