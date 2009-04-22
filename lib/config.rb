@@ -4,6 +4,8 @@
 
 module Config
   def config
+    return @config if @config
+
     file=File.expand_path($OPTS[:config_file])
     if File.exists? file
       @config||=YAML.load(File.open(file))
