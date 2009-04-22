@@ -13,7 +13,7 @@ module Config
       Trollop::die "Config file #{file} not found; example in #{ex}"
     end
   end
-  
+
   def destination_map
     unless @destination_map
       @destination_map={}
