@@ -11,7 +11,7 @@ module Config
       ex=File.expand_path(File.join(File.dirname(__FILE__),
                                     '..','res','clean.yml'))
       puts "Warning: config file #{file} not found; using default #{ex}"
-      @config||=YAML.load(File.open(file))
+      @config||=YAML.load(File.open(ex))
     end
   end
 
