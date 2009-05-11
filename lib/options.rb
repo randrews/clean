@@ -5,7 +5,7 @@
 module Options
   def get_options args=ARGV
     opts=Trollop::options(args) do
-      version "cleaner 1.0.0"
+      version "cleaner 1.1.1"
       banner <<-EOS
 Cleaner is a program for automatically sorting files based on their extensions.
 
