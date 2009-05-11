@@ -24,9 +24,8 @@ EOS
           :default=>'rename')
     end
 
-    Trollop::die "Must specify at least one directory to clean" if args.empty?
+    opts[:dirs]=( args.empty? ? ['.'] : args )
 
-    opts[:dirs]=args
     opts
   end
 end
