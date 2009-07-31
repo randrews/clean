@@ -1,12 +1,16 @@
 Gem::Specification.new do |s|
   s.name='clean'
   s.version='1.1.1'
-  s.date='2009-03-08'
+
+  s.date='2009-07-30'
   s.author='Andrews, Ross'
   s.email='randrews@geekfu.org'
   s.homepage='http://geekfu.org'
-  s.platform=Gem::Platform::RUBY
+
   s.summary="A utility for sorting messy folders"
+  s.description="A utility for sorting messy folders"
+
+  s.platform=Gem::Platform::RUBY
 
   s.files = [ "res/clean.yml",
               "lib/clean.rb",
