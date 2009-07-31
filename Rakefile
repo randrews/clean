@@ -21,7 +21,6 @@ task :package=>:build do
   else
     raise "Gem is named weirdly: #{file}"
   end
-  
 end
 
 task :build do
