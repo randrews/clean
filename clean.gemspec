@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name='clean'
-  s.version='1.1.1'
+  s.version='1.1.2'
 
   s.date='2009-07-30'
   s.author='Andrews, Ross'
